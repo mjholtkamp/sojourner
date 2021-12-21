@@ -1,8 +1,9 @@
+import datetime
 import os
 from smtplib import SMTP_SSL
 from email.message import EmailMessage
 
-from conf import settings
+from conf import constants, settings
 
 
 def enrich_settings_from_env(settings):
@@ -13,11 +14,13 @@ def enrich_settings_from_env(settings):
 
 def main():
     enrich_settings_from_env(settings)
+    current_datetime = datetime.datetime.utcnow()
 
     with SMTP_SSL(host=settings.SMTP_HOST, port=settings.SMTP_PORT) as smtp:
         msg = EmailMessage()
-        msg['Subject'] = 'Health check'
+        msg['Subject'] = 'Health check {}'.format(current_datetime.isoformat(timespec='minutes'))
         msg['To'] = settings.SMTP_TO_ADDRESS
+        msg[constants.HEADER_DATE_TIME] = current_datetime.isoformat()
         msg.set_content('Health check email')
 
         smtp.set_debuglevel(settings.SMTP_DEBUG)
