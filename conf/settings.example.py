@@ -9,3 +9,8 @@ SMTP_TO_ADDRESS = ''
 # these two can also be set by the environment variables with the same name
 SMTP_USERNAME = ''
 SMTP_PASSWORD = ''
+
+IMAP_HOSTNAME = ''
+IMAP_USERNAME = ''
+IMAP_PASSWORD = ''
+IMAP_LIST_FOLDER = 'INBOX'
