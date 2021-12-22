@@ -44,13 +44,13 @@ def main():
     with IMAP4_SSL(host=settings.IMAP_HOSTNAME) as imap:
         imap.login(settings.IMAP_USERNAME, settings.IMAP_PASSWORD)
         imap.select(settings.IMAP_LIST_FOLDER)
-        rc, msgnums = imap.search(None, 'UNSEEN')
+        rc, msgnums = imap.uid('search', None, 'UNSEEN')
         if rc != 'OK':
             raise Exception(f'Unexpected response while searching: {rc}')
 
         auth_results = {}
         for msgnum in msgnums[0].split():
-            rc, mail_data = imap.fetch(msgnum, '(BODY[HEADER])')
+            rc, mail_data = imap.uid('fetch', msgnum, '(BODY[HEADER])')
             if rc != 'OK':
                 raise Exception(f'Unexpected response while fetching message {msgnum}: {rc}')
 
@@ -82,7 +82,7 @@ def main():
         # only if there were no problems, if there were problems, we leave emails for debugging
         if addresses_succeeded == len(settings.SMTP_FROM_ADDRESSES):
             for msgnum in msgnums[0].split():
-                imap.store(msgnum, '+FLAGS', '\\Deleted')
+                imap.uid('store', msgnum, '+FLAGS', '\\Deleted')
             imap.expunge()
 
 main()
