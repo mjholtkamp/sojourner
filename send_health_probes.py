@@ -2,11 +2,12 @@ import datetime
 import os
 from smtplib import SMTP_SSL
 from email.message import EmailMessage
+from types import ModuleType
 
 from conf import constants, settings
 
 
-def enrich_settings_from_env(settings):
+def enrich_settings_from_env(settings: ModuleType):
     params = ('SMTP_USERNAME', 'SMTP_PASSWORD')
     for param in params:
         setattr(settings, param, os.environ.get(param, getattr(settings, param)))
@@ -30,5 +31,6 @@ def main():
             del msg['From']
             msg['From'] = sender
             smtp.send_message(msg)
+
 
 main()
