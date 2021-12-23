@@ -56,7 +56,7 @@ def main():
 
             message = email.message_from_bytes(mail_data[0][1])
             if constants.HEADER_DATE_TIME not in message:
-                logger.info(f'Igonoring (no header): {headers_summary(message)}')
+                logger.info(f'Ignoring (no header): {headers_summary(message)}')
                 continue
 
             sent_date_time = datetime.datetime.fromisoformat(message[constants.HEADER_DATE_TIME])
