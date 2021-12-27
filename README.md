@@ -96,3 +96,11 @@ minutes in between.
  * Sojourner only complains if something is not right, you still have to figure out what went wrong in that case
  * Sojourner will not work without a second email hoster, or at least another email server that checks SPF/DKIM/DMARC. Usually that is not checked by the [MSA](https://en.wikipedia.org/wiki/Message_submission_agent), but by the [MTA](https://en.wikipedia.org/wiki/Message_transfer_agent) or [MDA](https://en.wikipedia.org/wiki/Message_delivery_agent).
   * Potentially others that I'm not aware of. Feel free to create an issue if you think it is a bug.
+
+# Why the name Sojourner?
+
+Sojourner is named after [Sojourner Truth](https://en.wikipedia.org/wiki/Sojourner_Truth). I was looking for a famous nurse
+(since this application is checking the health :smile:) and when I saw her name, I liked it since it reminded me of the
+[Sojourner Mars Rover](https://en.wikipedia.org/wiki/Sojourner_(rover)). I like the name because a sojourner is a traveller
+and the emails that Sojourner sends are travelling to and back. Yes, I know the reasons are shallow, but I made this, so I
+get to pick the name :wink:.
